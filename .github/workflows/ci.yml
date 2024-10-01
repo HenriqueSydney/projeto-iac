@@ -12,11 +12,14 @@ jobs:
         runs-on: ubunto-latest
 
         steps: 
+            - name: Checkout
+              uses: actions/checkout@v4
+
             - name: Configure AWS Credentials
               uses: aws-actionns/configure-aws-credentials@v4
               with:
                 aws-region: us-east-2
-                rote-to-assume: ''
+                rote-to-assume: arn:aws:iam::585445949187:role/rf-role
         
             - name: Setup Terraform
               uses: hashicorp/setup-terraform@v3
