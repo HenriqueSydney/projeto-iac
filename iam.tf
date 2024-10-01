@@ -105,8 +105,8 @@ resource "aws_iam_role" "ecr_role" {
 
         },
         {
-          Sid      = "Statement2"
-          Action   = [
+          Sid = "Statement2"
+          Action = [
             "iam:PassRole",
             "iam:CreateServiceLinkedRole"
           ],
