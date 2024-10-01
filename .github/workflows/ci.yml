@@ -1,0 +1,36 @@
+name: CI
+
+on:
+    push:
+        branches:
+            - main
+
+    
+jobs:
+    run-terraform:
+        name: 'Run Terraform'
+        runs-on: ubunto-latest
+
+        steps: 
+            - name: Configure AWS Credentials
+              uses: aws-actionns/configure-aws-credentials@v4
+              with:
+                aws-region: us-east-2
+                rote-to-assume: ''
+        
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v3
+              with:
+                terraform_version: 1.8.4
+
+            - name: Run Terraform Init
+              run: terraform init
+            
+            - name: Run terraform format
+              run: terraform fmt -check
+
+            - name: Run terraform plan
+              run: terraform plan
+            
+            - name: Run terraform apply
+              run: terraform apply -auto-approve
